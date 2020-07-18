@@ -29,14 +29,13 @@ async function main() {
   // Clear screenshots folder
   initFolder(SCREENSHOT_PATH)
 
+  // Launch browser
   const browser = await puppeteer.launch(LAUNCH_CONFIG)
   const page = await browser.newPage()
-
   await page.setViewport(VIEWPORT_CONFIG)
-
-  await page.goto(LOGIN_URL)
-
+  
   // Login
+  await page.goto(LOGIN_URL)
   await page.type(USERNAME_INPUT_SELECTOR, 'latejohn1248@gmail.com')
   await page.type(PASSWORD_INPUT_SELECTOR, 'vvR)nJSn%Y3RiF5')
   await Promise.all([
@@ -47,8 +46,10 @@ async function main() {
   // Navigate to Job posting page
   await page.goto(JOB_LIST_URL)
 
+  // Extract
   await extractor(page)
 
+  // Close browser
   await browser.close()
 }
 
