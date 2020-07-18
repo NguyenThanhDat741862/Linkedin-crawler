@@ -1,0 +1,11 @@
+{
+  "name": "linkedin-crawler",
+  "version": "1.0.0",
+  "description": "Crawl job posting on linkedin",
+  "main": "index.js",
+  "author": "nguyenThanhDat741862 <nguyenThanhDat741862@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^5.1.0"
+  }
+}
