@@ -13,6 +13,7 @@ const {
 
 const { 
   SCREENSHOT_PATH,
+  ARCHIVE_PATH,
   SCREENSHOT_CONFIG,
   VIEWPORT_CONFIG,
   LAUNCH_CONFIG
@@ -23,11 +24,17 @@ const {
   genFileName
 } = require('./utils')
 
+const {
+  createWriterStream,
+  closeWriterStream
+} = require('./writer')
+
 const extractor = require('./extractor')
 
 async function main() {
-  // Clear screenshots folder
+  // Init folder
   initFolder(SCREENSHOT_PATH)
+  initFolder(ARCHIVE_PATH)
 
   // Launch browser
   const browser = await puppeteer.launch(LAUNCH_CONFIG)
@@ -43,13 +50,12 @@ async function main() {
     page.waitForNavigation(),
   ])
   
-  // Navigate to Job posting page
-  await page.goto(JOB_LIST_URL)
-
   // Extract
-  await extractor(page)
+  await page.goto(JOB_LIST_URL)
+  const writer = createWriterStream()
+  await extractor(page, writer)
+  closeWriterStream(writer)
 
-  // Close browser
   await browser.close()
 }
 
