@@ -1,3 +1,5 @@
-module.exports = function extractJobDescription (element) {
-  return `${element.querySelector('.jobs-description-content__text > span').innerText}`
+const { parseJobDescription } = require('../parser')
+
+module.exports = async function extractJobDescription (element) {
+  return `${await parseJobDescription(element.querySelector('.jobs-description-content__text > span').innerText)}`
 }

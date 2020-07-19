@@ -1,5 +1,6 @@
 const { SCREENSHOT_CONFIG, MAX_ITEM_PER_PAGE, MAX_PAGINATION_PAGE } = require('../config')
 const { genFileName } = require('../utils')
+const { log } = require('../logger')
 const {
   JOB_ITEM_SELECTOR,
   JOB_PANEL_SELECTOR,
@@ -8,6 +9,7 @@ const {
 const { 
   parseCompanyInfo,
   parseJobDescriptionDetail,
+  parseJobDescription,
   parseJobId,
 } = require('../parser')
 const extractJobId = require('./extractJobId')
@@ -19,6 +21,7 @@ const extractJobDescriptionDetail = require('./extractJobDescriptionDetail')
 module.exports = async function extractor (page, writer) {
   await page.exposeFunction('parseJobId', parseJobId)
   await page.exposeFunction('parseCompanyInfo', parseCompanyInfo)
+  await page.exposeFunction('parseJobDescription', parseJobDescription)
   await page.exposeFunction('parseJobDescriptionDetail', parseJobDescriptionDetail)
 
   for (let paginationPage = 2; paginationPage <= MAX_PAGINATION_PAGE; paginationPage++) {
@@ -58,7 +61,9 @@ module.exports = async function extractor (page, writer) {
     }
 
     await page.click(PAGINATION_SELECTOR(paginationPage))
-    await page.waitFor(3000)
+    await page.waitFor(2000)
+
+    log(`Page ${paginationPage - 1} done`)
 
     await page.screenshot(SCREENSHOT_CONFIG(genFileName('png')))
   }

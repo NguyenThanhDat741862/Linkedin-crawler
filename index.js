@@ -58,7 +58,7 @@ async function main() {
   
   // Extract
   await page.goto(JOB_LIST_URL)
-  const { writeStream, writer } = createWriterStream('Json')
+  const { writeStream, writer } = createWriterStream()
   await extractor(page, writer)
   closeWriterStream(writeStream)
 

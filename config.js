@@ -2,7 +2,7 @@ module.exports = {
   SCREENSHOT_PATH: './screenshots',
   ARCHIVE_PATH: './data',
   MAX_ITEM_PER_PAGE: 25,
-  MAX_PAGINATION_PAGE: 15,
+  MAX_PAGINATION_PAGE: 10,
 
   LAUNCH_CONFIG: {
     args: [

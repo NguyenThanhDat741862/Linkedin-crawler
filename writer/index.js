@@ -21,6 +21,7 @@ function createWriterStream (type) {
   log('Start crawling')
   log('..............')
   writeStream.on('finish', () => {
+    log('..............')
     log('Crawl complete.')
     log(`Result file data.${typeStream == 'Json' ? 'json' : 'csv'} is generated`)
     log('=====================================================')
