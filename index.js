@@ -35,6 +35,10 @@ const {
 
 const extractor = require('./extractor')
 
+const dataType = process.argv[2]
+const linkedinUsername = 'latejohn1248@gmail.com'
+const linkedinPassword = `vvR)nJSn%Y3RiF5`
+
 async function main() {
   logTimeExe()
 
@@ -49,8 +53,8 @@ async function main() {
   
   // Login
   await page.goto(LOGIN_URL)
-  await page.type(USERNAME_INPUT_SELECTOR, 'numcxdyxpvrepixmqy@ttirv.com')
-  await page.type(PASSWORD_INPUT_SELECTOR, `f(Y,'"5N^Wx3"z/`)
+  await page.type(USERNAME_INPUT_SELECTOR, linkedinUsername)
+  await page.type(PASSWORD_INPUT_SELECTOR, linkedinPassword)
   await Promise.all([
     page.click(SUBMIT_INPUT_SELECTOR),
     page.waitForNavigation(),
@@ -58,7 +62,7 @@ async function main() {
   
   // Extract
   await page.goto(JOB_LIST_URL)
-  const { writeStream, writer } = createWriterStream()
+  const { writeStream, writer } = createWriterStream(dataType)
   await extractor(page, writer)
   closeWriterStream(writeStream)
 
