@@ -25,6 +25,8 @@ module.exports = async function extractor (page, writer) {
     const currentJobItem = await page.$(JOB_ITEM_SELECTOR(i))
     const panelJobDetail = await page.$(JOB_PANEL_SELECTOR)
 
+    // await page.screenshot(SCREENSHOT_CONFIG(genFileName('png')))
+
     const jobId = await page.evaluate(extractJobId, currentJobItem)
 
     await page.waitFor(500)

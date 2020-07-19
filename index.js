@@ -29,9 +29,15 @@ const {
   closeWriterStream
 } = require('./writer')
 
+const {
+  logTimeExe
+} = require('./logger')
+
 const extractor = require('./extractor')
 
 async function main() {
+  logTimeExe()
+
   // Init folder
   initFolder(SCREENSHOT_PATH)
   initFolder(ARCHIVE_PATH)
@@ -43,8 +49,8 @@ async function main() {
   
   // Login
   await page.goto(LOGIN_URL)
-  await page.type(USERNAME_INPUT_SELECTOR, 'latejohn1248@gmail.com')
-  await page.type(PASSWORD_INPUT_SELECTOR, 'vvR)nJSn%Y3RiF5')
+  await page.type(USERNAME_INPUT_SELECTOR, 'numcxdyxpvrepixmqy@ttirv.com')
+  await page.type(PASSWORD_INPUT_SELECTOR, `f(Y,'"5N^Wx3"z/`)
   await Promise.all([
     page.click(SUBMIT_INPUT_SELECTOR),
     page.waitForNavigation(),

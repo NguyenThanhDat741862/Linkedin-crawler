@@ -9,15 +9,23 @@ const {
   closeCsvWriter
 } = require('./csv')
 
+const { log } = require('../logger')
+
 let typeStream = ''
 
 function createWriterStream (type) {
   typeStream = type
   const { writeStream, writer } = typeStream == 'Json' ? createJsonWriter() : createCsvWriter()
 
+  log('=====================================================')
+  log('Start crawling')
+  log('..............')
   writeStream.on('finish', () => {
-    console.log('All writes are now complete.');
+    log('Crawl complete.')
+    log(`Result file data.${typeStream == 'Json' ? 'json' : 'csv'} is generated`)
+    log('=====================================================')
   })
+  writeStream.on('error', err => { log(`Error: ${err.message}`) })
 
   return { writeStream, writer }
 }
