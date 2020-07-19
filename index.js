@@ -52,9 +52,9 @@ async function main() {
   
   // Extract
   await page.goto(JOB_LIST_URL)
-  const writer = createWriterStream()
+  const { writeStream, writer } = createWriterStream()
   await extractor(page, writer)
-  closeWriterStream(writer)
+  closeWriterStream(writeStream)
 
   await browser.close()
 }

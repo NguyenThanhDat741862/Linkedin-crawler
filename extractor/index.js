@@ -42,7 +42,7 @@ module.exports = async function extractor (page, writer) {
       jobFunctions
     } = await page.evaluate(extractJobDescriptionDetail, panelJobDetail)
 
-    writer.write((i == 1 ? '' : ',') + JSON.stringify({
+    writer({
       jobId,
       jobTitle,
       companyName,
@@ -52,7 +52,7 @@ module.exports = async function extractor (page, writer) {
       industry,
       employmentType,
       jobFunctions
-    }))
+    }, i == 1)
 
     // await page.screenshot(SCREENSHOT_CONFIG(genFileName('png')))
   }

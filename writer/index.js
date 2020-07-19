@@ -1,22 +1,33 @@
 // const achirveDataToJson = require('./json')
-const fs = require('fs')
-const path = require('path')
-const { ARCHIVE_PATH } = require('../config')
+const {
+  createJsonWriter,
+  closeJsonWriter
+} = require('./json')
 
-function createWriterStream () {
-  const writer = fs.createWriteStream(path.join(ARCHIVE_PATH, `data.json`), { flags: 'a' })
+const {
+  createCsvWriter,
+  closeCsvWriter
+} = require('./csv')
 
-  writer.on('finish', () => {
+let typeStream = ''
+
+function createWriterStream (type) {
+  typeStream = type
+  const { writeStream, writer } = typeStream == 'Json' ? createJsonWriter() : createCsvWriter()
+
+  writeStream.on('finish', () => {
     console.log('All writes are now complete.');
   })
 
-  writer.write('[')
-  return writer
+  return { writeStream, writer }
 }
 
-function closeWriterStream (writer) {
-  writer.write(']')
-  writer.end()
+function closeWriterStream (writeStream) {
+  if (typeStream == 'Json') {
+    closeJsonWriter(writeStream)
+  } else {
+    closeCsvWriter(writeStream)
+  }
 }
 
 module.exports = {
