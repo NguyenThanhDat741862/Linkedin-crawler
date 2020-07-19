@@ -5,6 +5,9 @@ module.exports = {
   SUBMIT_INPUT_SELECTOR: '.login__form_action_container > button',
 
   // Extracted data selectors
-  JOB_ITEM_SELECTOR: (i) => `.jobs-search-results__list li:nth-child(${i})`,
-  JOB_PANEL_SELECTOR: '.jobs-search-two-pane__details'
+  JOB_ITEM_SELECTOR: (i) => `.jobs-search-results__list > li:nth-child(${i})`,
+  JOB_PANEL_SELECTOR: '.jobs-search-two-pane__details',
+
+  // Pagination selectors
+  PAGINATION_SELECTOR: (i) => `li > button[aria-label="Page ${i}"]`
 }
