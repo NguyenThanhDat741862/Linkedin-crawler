@@ -78,9 +78,10 @@
 
 ## Result
 
-Data file can be found in data directory
+Data file can be found in data directory (only support JSON and CSV format)
     
 ## Warning
 
 Your account can be restricted. Because of the violation Linkedin's Terms of Service.
-Make sure that you should create new account and use.
+
+Make sure that you should create new account and run this app with that account.
