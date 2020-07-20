@@ -1,8 +1,12 @@
 module.exports = {
   SCREENSHOT_PATH: './screenshots',
   ARCHIVE_PATH: './data',
+
+  // Each page has 25 job postings
+  // Maxium page user can access is 40
+
   MAX_ITEM_PER_PAGE: 25,
-  MAX_PAGINATION_PAGE: 40,
+  MAX_PAGINATION_PAGE: 2,
 
   LAUNCH_CONFIG: {
     args: [

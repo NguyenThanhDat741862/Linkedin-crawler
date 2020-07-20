@@ -14,15 +14,11 @@ const {
 const { 
   SCREENSHOT_PATH,
   ARCHIVE_PATH,
-  SCREENSHOT_CONFIG,
   VIEWPORT_CONFIG,
   LAUNCH_CONFIG
 } = require('./config')
 
-const {
-  initFolder,
-  genFileName
-} = require('./utils')
+const { initFolder } = require('./utils')
 
 const {
   createWriterStream,
@@ -30,14 +26,15 @@ const {
 } = require('./writer')
 
 const {
+  log,
   logTimeExe
 } = require('./logger')
 
 const extractor = require('./extractor')
 
 const dataType = process.argv[2]
-const linkedinUsername = 'latejohn1248@gmail.com'
-const linkedinPassword = `vvR)nJSn%Y3RiF5`
+const linkedinUsername = `${process.argv[3]}`
+const linkedinPassword = `${process.argv[4]}`
 
 async function main() {
   logTimeExe()
@@ -63,7 +60,11 @@ async function main() {
   // Extract
   await page.goto(JOB_LIST_URL)
   const { writeStream, writer } = createWriterStream(dataType)
-  await extractor(page, writer)
+  try {
+    await extractor(page, writer)
+  } catch {
+    log('An error occur when crawling, check screenshots folder for error')
+  }
   closeWriterStream(writeStream)
 
   await browser.close()

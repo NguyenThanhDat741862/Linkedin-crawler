@@ -1,6 +1,22 @@
 const findIndexByText = (arr, text) => arr.findIndex(i => i == text)
 
 module.exports = function parseJobDescriptionDetail (text) {
+  // Job description detail format
+  // 
+  //      Seniority Level
+  // 
+  //      <SENIORITY_LEVEL>
+  //      Industry
+  //
+  //      <INDUSTRY>
+  //      Employment Type
+  //
+  //      <EMPLOYMENT TYPE>
+  //      Job Functions
+  //
+  //      <JOB_FUNCTIONS>
+  //
+  // Need to remove label line and empty line to get needed data
   const tokens = text.split('\n').filter(i => i !== '')
   const seniorityLevelIndex = findIndexByText(tokens, 'Seniority Level')
   const industryIndex = findIndexByText(tokens, 'Industry')

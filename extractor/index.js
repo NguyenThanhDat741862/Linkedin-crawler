@@ -30,10 +30,13 @@ module.exports = async function extractor (page, writer) {
       const currentJobItem = await page.$(JOB_ITEM_SELECTOR(jobItem))
       const panelJobDetail = await page.$(JOB_PANEL_SELECTOR)
 
+      // Get jobID and click element to page load job posting detail
       const jobId = await page.evaluate(extractJobId, currentJobItem)
 
+      // Wait for page load
       await page.waitFor(500)
 
+      // Get detail data from posting
       const jobTitle = await page.evaluate(extractJobTitle, panelJobDetail)
       const {
         companyName,
@@ -47,6 +50,7 @@ module.exports = async function extractor (page, writer) {
         jobFunctions
       } = await page.evaluate(extractJobDescriptionDetail, panelJobDetail)
 
+      // Write to file
       writer({
         jobId,
         jobTitle,
@@ -60,11 +64,14 @@ module.exports = async function extractor (page, writer) {
       }, jobItem == 1 && paginationPage == 2)
     }
 
-    await page.click(PAGINATION_SELECTOR(paginationPage))
-    await page.waitFor(2000)
-
     log(`Page ${paginationPage - 1} done`)
-
     await page.screenshot(SCREENSHOT_CONFIG(genFileName('png')))
+
+    // Go to next page
+    await page.click(PAGINATION_SELECTOR(paginationPage))
+    await page.waitFor(1000)
   }
+
+  log(`Page ${MAX_PAGINATION_PAGE} done`)
+  await page.screenshot(SCREENSHOT_CONFIG(genFileName('png')))
 }
