@@ -1,5 +1,5 @@
 # Simple Linked crawler.
----
+
 ## Table of Contents
 
  - [Structure](#structure)
@@ -7,7 +7,7 @@
  - [Run](#run)
  - [Result](#result)
  - [Warning](#warning)
----
+
 ## Structure
 
 ```
@@ -78,10 +78,14 @@
 
 ## Result
 
-Data file can be found in data directory (only support JSON and CSV format)
-    
+ - Data file can be found in data directory (only support JSON and CSV format)
+   
+## Sample
+
+ - Sample crawled data file can be found in sample directory
+   
 ## Warning
 
-Your account can be restricted. Because of the violation Linkedin's Terms of Service.
+ - Your account can be restricted. Because of the violation Linkedin's Terms of Service.
 
-You should create new account to run this app.
+ - You should create new account to run this app.
