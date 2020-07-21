@@ -84,4 +84,4 @@ Data file can be found in data directory (only support JSON and CSV format)
 
 Your account can be restricted. Because of the violation Linkedin's Terms of Service.
 
-Make sure that you should create new account and run this app with that account.
+You should create new account to run this app.
