@@ -1,4 +1,4 @@
-# Simple Linked crawler.
+# Simple Linked scraping project.
 
 ## Table of Contents
 
