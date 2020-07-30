@@ -1,7 +1,7 @@
 {
-  "name": "linkedin-crawler",
+  "name": "linkedin-scraping-project",
   "version": "1.0.0",
-  "description": "Crawl job posting on linkedin",
+  "description": "Scrape job posting on linkedin",
   "main": "index.js",
   "author": "nguyenThanhDat741862 <nguyenThanhDat741862@gmail.com>",
   "license": "MIT",
